@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">StudentList</string>
+    <string name="list_of_students">List of Students</string>
+    <string name="arrow_back_icon">arrow back icon</string>
+</resources>
