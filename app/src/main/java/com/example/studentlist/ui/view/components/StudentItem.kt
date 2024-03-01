@@ -83,12 +83,8 @@ fun ColumnItem(
             color = Color.Black,
             textSize = FontSize.fontSize14
         )
-        Row(
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            CustomTextView(
-                text = studentOthers
-            )
-        }
+        CustomTextView(
+            text = studentOthers
+        )
     }
 }
