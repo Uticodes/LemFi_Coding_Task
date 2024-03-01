@@ -4,6 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -24,14 +25,10 @@ fun StudentItem(
     studentName: String,
     studentAge: Int,
     studentDepartment: String,
-    studentRegNumber: String
+    studentRegNumber: String,
+    flipped: Boolean = false
 ) {
-
-    Row(
-        modifier = modifier,
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.Center,
-    ) {
+    val image: @Composable () -> Unit = {
         Image(
             modifier = Modifier
                 .size(Dimensions.dimens50)
@@ -42,21 +39,56 @@ fun StudentItem(
             painter = painterResource(id = R.drawable.ic_person),
             contentDescription = "Profile picture"
         )
-        Column {
-            CustomTextView(
-                text = studentName,
-                fontWeight = FontWeight.Bold,
-                color = Color.Black,
-                textSize = FontSize.fontSize14
-            )
-            Row(
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                CustomTextView(
-                    text = "$studentAge years | $studentDepartment | $studentRegNumber"
-                )
-            }
+    }
+
+    val studentOthers = listOf("$studentAge years", studentDepartment, studentRegNumber)
+
+    val column: @Composable () -> Unit = {
+        ColumnItem(
+            studentName = studentName,
+            studentOthers = studentOthers.let { if (flipped) it.reversed() else it }
+                .joinToString(" | "),
+            horizontalAlignment = if (flipped) Alignment.End else Alignment.Start
+        )
+    }
+
+    val itemFlow = listOf(image, column).let {
+        if (flipped) it.reversed() else it
+    }
+
+    Row(
+        modifier = modifier,
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.Center,
+    ) {
+        if (flipped) Spacer(modifier = Modifier.weight(1f))
+        itemFlow.forEach {
+            it()
         }
     }
 }
 
+@Composable
+fun ColumnItem(
+    studentName: String,
+    studentOthers: String,
+    horizontalAlignment: Alignment.Horizontal
+) {
+    Column(
+        horizontalAlignment = horizontalAlignment
+    ) {
+        CustomTextView(
+            text = studentName,
+            fontWeight = FontWeight.Bold,
+            color = Color.Black,
+            textSize = FontSize.fontSize14
+        )
+        Row(
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            CustomTextView(
+                text = studentOthers
+            )
+        }
+    }
+}

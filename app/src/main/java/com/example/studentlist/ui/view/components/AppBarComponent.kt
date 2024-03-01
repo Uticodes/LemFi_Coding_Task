@@ -17,7 +17,6 @@ import androidx.compose.ui.unit.dp
 import com.example.studentlist.R
 import com.example.studentlist.ui.theme.Dimensions
 import com.example.studentlist.ui.theme.FontSize
-import com.example.studentlist.ui.view.components.CustomTextView
 
 @Preview(showBackground = true)
 @Composable

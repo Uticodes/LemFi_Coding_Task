@@ -28,14 +28,16 @@ fun MainApp() {
             modifier = Modifier.padding(padding),
             contentPadding = PaddingValues(Dimensions.dimens16)
         ) {
+
             itemsIndexed(listOfStudents) { index, student ->
                 StudentItem(
                     studentName = student.name,
                     studentAge = student.age,
                     studentDepartment = student.department,
-                    studentRegNumber = student.avatar
+                    studentRegNumber = student.avatar,
+                    flipped = ( index % 2 != 0 )
                 )
-                if (index < listOfStudents.size - 1) {
+                if (index < listOfStudents.size) {
                     Divider(
                         color = Color.LightGray,
                         thickness = 1.dp
