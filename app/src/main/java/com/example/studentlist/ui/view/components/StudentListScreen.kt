@@ -11,6 +11,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.example.studentlist.data.local.StudentData
 import com.example.studentlist.ui.theme.Dimensions
+import com.example.studentlist.utils.HandleItemFlip.shouldFlip
 
 @Composable
 fun StudentListScreen(
@@ -26,7 +27,7 @@ fun StudentListScreen(
             itemsIndexed(students) { index, student ->
                 StudentItem(
                     student = student,
-                    flipped = (index % 2 != 0)
+                    flipped = shouldFlip(index)
                 )
                 if (index < students.size) {
                     Divider(

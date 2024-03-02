@@ -47,14 +47,14 @@ fun StudentItem(
         ColumnItem(
             modifier = Modifier.padding(Dimensions.dimens8),
             studentName = student.name.orEmpty(),
-            studentOthers = studentOthers.let { if (flipped) it.reversed() else it }
+            studentOthers = studentOthers.let { if (flipped) it else it.reversed() }
                 .joinToString(" | "),
-            horizontalAlignment = if (flipped) Alignment.End else Alignment.Start
+            horizontalAlignment = if (flipped) Alignment.Start else Alignment.End
         )
     }
 
     val itemFlow = listOf(image, column).let {
-        if (flipped) it.reversed() else it
+        if (flipped) it else it.reversed()
     }
 
     Row(
@@ -62,7 +62,7 @@ fun StudentItem(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Center,
     ) {
-        if (flipped) Spacer(modifier = Modifier.weight(1f))
+        if (!flipped) Spacer(modifier = Modifier.weight(1f))
         itemFlow.forEach {
             it()
         }
