@@ -1,6 +1,7 @@
 package com.example.studentlist.ui.view
 
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.Divider
@@ -30,6 +31,7 @@ fun StudentsScreen(
                 )
                 if (index < students.size) {
                     Divider(
+                        modifier.padding(vertical = Dimensions.dimens5),
                         color = Color.LightGray,
                         thickness = 1.dp
                     )

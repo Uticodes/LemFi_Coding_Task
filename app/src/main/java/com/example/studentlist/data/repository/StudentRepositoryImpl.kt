@@ -14,6 +14,7 @@ class StudentRepositoryImpl(
     private val apiService: ApiService
 ) : StudentRepository {
     override suspend fun getAllStudents(): Flow<Result<List<Student>>> = flow {
+        emitAll(studentDao.getAllStudents().map { Result.success(it) })
 
         val studentsFromApi = performApiCall(apiCall = { apiService.getStudents() })
         studentsFromApi.onSuccess { students ->
