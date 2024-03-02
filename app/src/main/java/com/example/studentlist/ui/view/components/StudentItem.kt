@@ -41,7 +41,7 @@ fun StudentItem(
     }
 
     val studentOthers =
-        listOf(stringResource(R.string.years, student.age), student.department, "NN/B19/281")
+        listOf(stringResource(R.string.years, student.age), student.department, student.profileId /*"NN/B19/281"*/)
 
     val column: @Composable () -> Unit = {
         ColumnItem(

@@ -1,6 +1,8 @@
 package com.example.studentlist.data.local
 
 import com.example.studentlist.data.remote.dto.Student
+import com.example.studentlist.utils.convertProfileId
+import com.example.studentlist.utils.formatAge
 
 data class StudentData(
     val id: String? = null,
@@ -17,9 +19,9 @@ data class StudentData(
                     id = it.id,
                     name = it.name,
                     avatar = it.avatar,
-                    age = it.age,
+                    age = formatAge(it.age),
                     department = it.department,
-                    profileId = it.profileId
+                    profileId = it.profileId?.let { id -> convertProfileId(id) }
                 )
             }
         }
