@@ -2,7 +2,6 @@ package com.example.studentlist.ui.view.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
@@ -12,20 +11,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
 import coil.compose.rememberAsyncImagePainter
 import com.example.studentlist.R
-import com.example.studentlist.data.remote.dto.Student
+import com.example.studentlist.data.local.StudentData
 import com.example.studentlist.ui.theme.Dimensions
-import com.example.studentlist.ui.theme.FontSize
+import com.example.studentlist.utils.Constants.TEST_IMAGE_URL
 import timber.log.Timber
 
 @Composable
 fun StudentItem(
     modifier: Modifier = Modifier,
-    student: Student,
+    student: StudentData,
     flipped: Boolean = false
 ) {
     Timber.d("IMAGE: ${student.avatar}")
@@ -37,7 +34,7 @@ fun StudentItem(
                     RoundedCornerShape(size = Dimensions.dimens10)
                 ),
             painter = rememberAsyncImagePainter(
-                model = "https://play-lh.googleusercontent.com/TpuBDn1750YoVkiVqKVaq06Q_hk28yF7YKtN9spdLTV0KvPQk1Wasczo9mUTTklymMlp",
+                model = TEST_IMAGE_URL
                 ),
             contentDescription = stringResource(R.string.profile_picture)
         )
@@ -69,28 +66,5 @@ fun StudentItem(
         itemFlow.forEach {
             it()
         }
-    }
-}
-
-@Composable
-fun ColumnItem(
-    modifier: Modifier,
-    studentName: String,
-    studentOthers: String,
-    horizontalAlignment: Alignment.Horizontal
-) {
-    Column(
-        modifier = modifier,
-        horizontalAlignment = horizontalAlignment,
-    ) {
-        CustomTextView(
-            text = studentName,
-            fontWeight = FontWeight.Bold,
-            color = Color.Black,
-            textSize = FontSize.fontSize14
-        )
-        CustomTextView(
-            text = studentOthers
-        )
     }
 }
