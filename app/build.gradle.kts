@@ -72,11 +72,15 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+    testOptions {
+        unitTests.isIncludeAndroidResources = true
+        unitTests.isReturnDefaultValues = true
+    }
 }
 
 dependencies {
 
-    implementation(libs.core.ktx)
+    implementation(libs.coreKtx)
     implementation(libs.lifecycle.runtime.ktx)
     implementation(libs.activity.compose)
     implementation(platform(libs.compose.bom))
@@ -99,6 +103,7 @@ dependencies {
     implementation(libs.roomRuntime)
     implementation(libs.hiltAndroid)
     implementation(libs.hiltNavigation)
+    implementation(libs.androidx.junit.ktx)
 
     ksp(libs.moshiCodegen)
     ksp(libs.hiltCompiler)
@@ -106,10 +111,28 @@ dependencies {
 
 
     testImplementation(libs.junit)
+    testImplementation(libs.androidCore)
+    testImplementation(libs.mockk)
+    testImplementation(libs.coroutinesTest)
+    testImplementation(libs.roomTesting)
+    testImplementation(libs.kotlinTest)
+    testImplementation(libs.androidxCoreKtx)
+    testImplementation(libs.testRunnerVersion)
+    testImplementation(libs.robolectric)
+    testImplementation(libs.turbine)
+
+    androidTestImplementation(libs.junit)
+    androidTestImplementation(libs.androidxCoreKtx)
     androidTestImplementation(libs.androidx.test.ext.junit)
-    androidTestImplementation(libs.espresso.core)
+    androidTestImplementation(libs.espressoCore)
+    androidTestImplementation(libs.roomTesting)
+//    androidTestImplementation(libs.androidCore)
     androidTestImplementation(platform(libs.compose.bom))
     androidTestImplementation(libs.ui.test.junit4)
+    androidTestImplementation(libs.mockkAndroid)
+//    androidTestImplementation(libs.testRunnerVersion)
+    androidTestImplementation(libs.ui.test.manifest)
+
     debugImplementation(libs.ui.tooling)
     debugImplementation(libs.ui.test.manifest)
 }
