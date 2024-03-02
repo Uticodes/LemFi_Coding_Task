@@ -12,7 +12,7 @@ suspend fun <T> performApiCall(
             Result.success(response.body())
         } else {
             Timber.e("API Error: ${response.message()}")
-            Result.failure(FetchExceptions(message = response.message()))
+            Result.failure(FetchExceptions(message = response.errorBody().toString()))
         }
     } catch (e: Exception) {
         Timber.e(e, e.message)

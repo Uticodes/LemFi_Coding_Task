@@ -1,7 +1,9 @@
 *.iml
 .gradle
+.gradle/
 /local.properties
 /.idea/caches
+.idea/
 /.idea/libraries
 /.idea/modules.xml
 /.idea/workspace.xml
@@ -14,3 +16,8 @@
 .cxx
 local.properties
 .idea/*
+/.idea
+*.idea
+bin/
+gen/
+out/
