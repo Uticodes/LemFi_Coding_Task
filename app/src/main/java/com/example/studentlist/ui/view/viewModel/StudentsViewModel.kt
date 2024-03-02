@@ -23,7 +23,7 @@ class StudentsViewModel @Inject constructor(
         getAllStudents()
     }
 
-    private fun getAllStudents() {
+    fun getAllStudents() {
         viewModelScope.launch(dispatcher.io()) {
             _uiState.update { state -> state.copy(isLoading = true) }
             repository.getAllStudents().collect { result ->
